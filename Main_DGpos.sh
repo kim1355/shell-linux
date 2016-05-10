@@ -145,7 +145,7 @@ function backup()
                 echo "-----------------------------------------------------"
                 echo "--程序包${app_dir}${file_name}不存在！不能进行备份！！！"
                 echo "-----------------------------------------------------"
-                                return -2
+				return -2
         fi
 }
 
@@ -343,10 +343,33 @@ case $? in
                 stop_app
         ;;
         4)
-                update
+                read -p "确定要做-更新-操作？（Y/y）或 (N/n) : " h
+                case $h in
+                y|Y)
+                        update
+                        ;;
+                n|N)
+                        choice
+                        ;;
+                *)
+                        echo "请输入正确的字符！"
+                        exit 0
+                        ;;
+                esac
         ;;
         5)
-                rollback
+                read -p "确定要做-恢复-操作？（Y/y）或 (N/n) : " j
+                case $j in
+                y|Y)
+                        rollback
+                        ;;
+                n|N)
+                        choice
+                        ;;
+                *)
+                        echo "请输入正确的字符！"
+                        exit 0
+                esac
         ;;
         esac
 
